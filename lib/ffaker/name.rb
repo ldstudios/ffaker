@@ -5,12 +5,12 @@ module FFaker
     extend ModuleUtils
     extend self
 
-    MALE_PREFIXES = %w(Mr.).freeze
-    FEMALE_PREFIXES = %w(Mrs. Miss.).freeze
-    OTHER_PREFIXES =  %w(Ms. Dr.).freeze
+    MALE_PREFIXES = %w[Mr.].freeze
+    FEMALE_PREFIXES = %w[Mrs. Miss.].freeze
+    OTHER_PREFIXES =  %w[Ms. Dr.].freeze
     PREFIXES = (MALE_PREFIXES + FEMALE_PREFIXES + OTHER_PREFIXES).freeze
     FIRST_NAMES = (FIRST_NAMES_FEMALE + FIRST_NAMES_MALE).freeze
-    SUFFIXES = %w(Jr. Sr. I II III IV V MD DDS PhD DVM).freeze
+    SUFFIXES = %w[Jr. Sr. I II III IV V MD DDS PhD DVM].freeze
 
     def name
       "#{first_name} #{last_name}"
@@ -85,13 +85,6 @@ module FFaker
 
     def last_name
       fetch_sample(LAST_NAMES)
-    end
-
-    def html_safe_last_name
-      loop do
-        t = LAST_NAMES.sample
-        return t unless t.include? "'"
-      end
     end
 
     def html_safe_last_name

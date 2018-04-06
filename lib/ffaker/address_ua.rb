@@ -8,8 +8,8 @@ module FFaker
     extend self
 
     POSTAL_CODE_FORMAT        = ['#####'].freeze
-    BUILDING_NUMBER_FORMATS   = %w(## # ###).freeze
-    APPARTMENT_NUMBER_FORMATS = %w(# ## ###).freeze
+    BUILDING_NUMBER_FORMATS   = %w[## # ###].freeze
+    APPARTMENT_NUMBER_FORMATS = %w[# ## ###].freeze
 
     def country
       fetch_sample(COUNTRY)
@@ -51,7 +51,7 @@ module FFaker
       if allow_first_zero
         FFaker.numerify(masks_arr)
       else
-        fetch_sample(masks_arr).sub(/#/) { (rand(9) + 1).to_s }.gsub(/#/) { rand(10).to_s }
+        fetch_sample(masks_arr).sub(/#/) { rand(1..9).to_s }.gsub(/#/) { rand(0..9).to_s }
       end
     end
   end

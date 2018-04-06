@@ -6,11 +6,11 @@ module FFaker
     extend self
 
     BYTE = [*'0'..'255'].freeze
-    HOSTS = %w(gmail.com yahoo.com hotmail.com).freeze
-    DISPOSABLE_HOSTS = %w(mailinator.com suremail.info spamherelots.com binkmail.com safetymail.info).freeze
-    DOMAIN_SUFFIXES = %w(co.uk com us ca biz info name).freeze
-    SAFE_DOMAIN_SUFFIXES = %w(org com net).freeze
-    SLUG_DELIMITERS = %w(- _ .).freeze
+    HOSTS = %w[gmail.com yahoo.com hotmail.com].freeze
+    DISPOSABLE_HOSTS = %w[mailinator.com suremail.info spamherelots.com binkmail.com safetymail.info].freeze
+    DOMAIN_SUFFIXES = %w[co.uk com us ca biz info name].freeze
+    SAFE_DOMAIN_SUFFIXES = %w[org com net].freeze
+    SLUG_DELIMITERS = %w[- _ .].freeze
     MAC_LIMIT = 281_474_976_710_655
 
     def email(name = nil)
@@ -33,14 +33,14 @@ module FFaker
 
     def user_name(name = nil)
       if name
-        parts = shuffle(name.scan(/\w+/)).join(fetch_sample(%w(. _)))
+        parts = shuffle(name.scan(/\w+/)).join(fetch_sample(%w[. _]))
         parts.downcase
       else
-        case rand(2)
+        case rand(0..1)
         when 0
           sanitize(Name.first_name)
         when 1
-          [Name.first_name, Name.last_name].map { |n| sanitize(n) }.join(fetch_sample(%w(. _)))
+          [Name.first_name, Name.last_name].map { |n| sanitize(n) }.join(fetch_sample(%w[. _]))
         end
       end
     end
@@ -81,11 +81,11 @@ module FFaker
     def password(min_length = 8, max_length = 16)
       length =
         min_length > max_length ? min_length : fetch_sample([*min_length..max_length])
-      String.from_regexp(/[a-z]{#{length}}/)
+      String.from_regexp(/\w{#{length}}/)
     end
 
     def mac(delimiter = ':')
-      rand(MAC_LIMIT).to_s(16).rjust(12, '0').scan(/.{2}/).join(delimiter)
+      rand(0...MAC_LIMIT).to_s(16).rjust(12, '0').scan(/.{2}/).join(delimiter)
     end
 
     private

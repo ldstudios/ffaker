@@ -1,14 +1,21 @@
 # encoding: utf-8
 
+require 'date'
+
 module FFaker
   module Time
     extend ModuleUtils
     extend self
 
-    MONTHS = %w(January February March April May June July August September October November December).freeze
+    MONTHS = %w[January February March April May June July August September October November December].freeze
+    DAYS_OF_WEEK = %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday].freeze
 
     def month
       fetch_sample(MONTHS)
+    end
+
+    def day_of_week(options = {})
+      fetch_sample(DAYS_OF_WEEK)[0..(options[:long] ? 10 : 2)]
     end
 
     def date(params = {})
@@ -36,7 +43,24 @@ module FFaker
     end
 
     def between(from, to)
-      ::Time.at(from + rand * (to.to_f - from.to_f))
+      from_value = convert_to_time(from)
+      to_value = convert_to_time(to)
+      ::Time.at(from_value + rand * (to_value.to_f - from_value.to_f))
+    end
+
+    private
+
+    def convert_to_time(value)
+      case value.class.name
+      when 'String'
+        DateTime.parse(value).to_time
+      when 'Date', 'DateTime', 'ActiveSupport::TimeWithZone'
+        value.to_time
+      when 'Time'
+        value
+      else
+        raise "FFaker cannot convert #{value.class} '#{value}' to Time"
+      end
     end
   end
 end

@@ -9,7 +9,7 @@ module FFaker
     extend ModuleUtils
     extend self
 
-    REGION = %w(Hovedstaden Sjælland Syddanmark Midtjylland Nordjylland).freeze
+    REGION = %w[Hovedstaden Sjælland Syddanmark Midtjylland Nordjylland].freeze
     STATE = REGION
 
     def zip_code
@@ -41,7 +41,7 @@ module FFaker
     end
 
     def street_address
-      "#{street_name} #{rand(100)}"
+      "#{street_name} #{rand(0..99)}"
     end
 
     def full_address

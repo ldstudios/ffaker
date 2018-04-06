@@ -7,7 +7,7 @@ module FFaker
     extend ModuleUtils
     extend self
 
-    LAST_NAMES = %w(jammeh ceesay).freeze
+    LAST_NAMES = %w[jammeh ceesay].freeze
 
     def first_name_female
       fetch_sample(FIRST_NAMES_FEMALE)
@@ -30,15 +30,8 @@ module FFaker
     end
 
     def name
-      case rand(10)
-      when 9 then name_female
-      when 8 then name_male
-      when 7 then name_female
-      when 6 then name_male
-      when 5 then name_female
-      when 4 then name_male
-      when 3 then name_female
-      when 2 then name_male
+      case rand(0..1)
+      when 1 then name_male
       else name_female
       end
     end

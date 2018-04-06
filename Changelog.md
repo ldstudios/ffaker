@@ -1,3 +1,33 @@
+## 2.9.0
+  - Add orly book cover generator [@artplan1]
+  - Add LoremIE (Irish) [@mklemme]
+  - Improve FFaker::Time.between docs and implementation [@eikes]
+  - Fix patronymics for Никита [@ulzr]
+  - Add EAN generator [@jvanbaarsen]
+
+## 2.8.1
+  - Updated password generation [@makketagg]
+
+## 2.8.0
+  - Fixes `Uncaught exception: invalid byte sequence in US-ASCII` [@thilonel]
+  - Add international numbers on PhoneNumberFR and test it [@nicolas-brousse]
+  - Clean code based on PhoneNumberBR structure [@nicolas-brousse]
+  - Drop support for ruby 1.9 [@thilonel]
+  - Replace mass require with autoload [@thilonel]
+
+## 2.7.0
+  - Add unique method [@AlexAvlonitis]
+  - Add Time.day_of_week [@tvarley]
+  - Add CompanyIT.partita_iva [@aaronsama]
+
+## 2.6.0
+  - Add Polish names [@walerian777]
+  - Add Polish addresses [@walerian777]
+  - Add full_address to Brazilian addresses [@adimircolen]
+  - Add Filesystem [@j0al]
+  - Add Aminal [@ni3t]
+  - Fix PhoneNumberAU mobile number [@spheric]
+
 ## 2.5.0
   - Support Arabic names [@Moafak]
   - Add Japanese address [@kojino]

@@ -4,10 +4,10 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'ffaker'
-  s.version           = '2.5.0'
-  s.date              = '2017-02-20'
+  s.version           = '2.9.0'
+  s.date              = '2018-01-04'
   s.rubyforge_project = 'ffaker'
-  s.required_ruby_version = '>= 1.9'
+  s.required_ruby_version = '>= 2.0'
 
   s.license = 'MIT'
 
@@ -21,21 +21,22 @@ Gem::Specification.new do |s|
   s.email    = 'EmmanuelOga@gmail.com'
   s.homepage = 'http://github.com/ffaker/ffaker'
 
-  s.require_paths = %w(lib)
+  s.require_paths = %w[lib]
 
   s.rdoc_options = ['--charset=UTF-8']
-  s.extra_rdoc_files = %w(README.md LICENSE Changelog.md)
+  s.extra_rdoc_files = %w[README.md LICENSE Changelog.md]
 
   # = MANIFEST =
-  s.files = %w(
+  s.files = %w[
     Changelog.md
     Gemfile
     LICENSE
+    RANDOM.md
     README.md
     REFERENCE.md
     Rakefile
     ffaker.gemspec
-  ) + Dir['lib/**/*', 'scripts/*']
+  ] + Dir['lib/**/*', 'scripts/*']
   # = MANIFEST =
 
   s.test_files = Dir['test/**/*']

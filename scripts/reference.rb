@@ -2,13 +2,13 @@ $LOAD_PATH << File.dirname(__FILE__) + '/../lib'
 require 'ffaker'
 
 ICONS = {
-  error: "‼️",
-  warning: "❗"
+  error: '‼️',
+  warning: '❗'
 }.freeze
 
 # Get a list of sections
 def faker_modules
-  FFaker.constants.map do |const|
+  FFaker.constants.sort.map do |const|
     mod = FFaker.const_get(const)
     next unless mod.is_a?(Module)
     next if mod == FFaker::ArrayUtils
@@ -22,7 +22,7 @@ end
 # Returns faker methods for a given module
 def faker_methods(mod)
   methods = mod.methods - Module.methods -
-            [:k, :underscore, :fetch_sample, :rand, :shuffle]
+            %i[k underscore fetch_sample rand shuffle unique]
 
   # For Company.name (et al), don't discard :name if it was reimplemented
   methods << :name if mod.send(:name) != mod.to_s
@@ -44,7 +44,7 @@ def escape(str)
   str.gsub('&', '&amp;').gsub('<', '&lt;').gsub('>', '&gt;').delete("\n")
 end
 
-sections = faker_modules.each.map do |mod|
+sections = faker_modules.map do |mod|
   lines = []
 
   methods = faker_methods(mod)
@@ -60,11 +60,11 @@ sections = faker_modules.each.map do |mod|
     right = ''
 
     if arity > 0
-      left = "`#{meth}`(#{arity.times.map { '...' }.join(', ')})"
+      left = "`#{meth}`(#{Array.new(arity) { '...' }.join(', ')})"
     else
       begin
         examples, warnings = catch_warnings do
-          3.times.map { mod.send meth }
+          Array.new(3) { mod.send meth }
         end
         right = if warnings.any?
                   "#{ICONS[:warning]} *#{warnings.first}*"

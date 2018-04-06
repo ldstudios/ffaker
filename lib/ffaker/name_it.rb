@@ -6,7 +6,7 @@ module FFaker
     extend ModuleUtils
     extend self
 
-    PREFIX = %w(Sig. Sig.ra Sig.na Dr. Dott. Dott.ssa Prof. Prof.ssa).freeze
+    PREFIX = %w[Sig. Sig.ra Sig.na Dr. Dott. Dott.ssa Prof. Prof.ssa].freeze
 
     # randomized? (ITALIAN)  prefix!
     #
@@ -23,11 +23,8 @@ module FFaker
     end
 
     def name
-      case rand(10)
-      when 7 then "#{prefix} #{first_name} #{last_name}"
-      when 5 then "#{prefix} #{first_name} #{last_name}"
-      when 3 then "#{first_name} #{last_name}"
-      when 0 then "#{first_name} #{last_name}"
+      case rand(0..9)
+      when 5, 7 then "#{prefix} #{first_name} #{last_name}"
       else        "#{first_name} #{last_name}"
       end
     end

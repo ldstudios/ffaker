@@ -15,11 +15,12 @@ module FFaker
       'Australian Capital Territory', 'New South Wales', 'Queensland',
       'South Australia', 'Tasmania', 'Victoria', 'Western Australia'
     ].freeze
-    STATE_ABBR = %w(ACT NSW NT QLD SA TAS VIC WA).freeze
+    STATE_ABBR = %w[ACT NSW NT QLD SA TAS VIC WA].freeze
     # based on http://en.wikipedia.org/wiki/List_of_cities_in_Australia
     SUBURB = {
       'ACT' => {
-        '2600' => 'Canberra', '2601' => 'Canberra', '2602' => "O'Connor", '2612' => 'Braddon' },
+        '2600' => 'Canberra', '2601' => 'Canberra', '2602' => "O'Connor", '2612' => 'Braddon'
+      },
       'NT' => { '0800' => 'Darwin', '0830' => 'Palmerston' },
       'SA' => {
         '5000' => 'Adelaide', '5015' => 'Port Adelaide', '5211' => 'Victor Harbor',
@@ -88,7 +89,7 @@ module FFaker
 
     def postcode(st_abbr = nil)
       st_abbr ||= state_abbr
-      POSTCODE[st_abbr][rand(POSTCODE[st_abbr].size)]
+      POSTCODE[st_abbr][rand(0...POSTCODE[st_abbr].size)]
     end
 
     def state

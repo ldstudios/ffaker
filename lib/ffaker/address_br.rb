@@ -9,7 +9,7 @@ module FFaker
     extend ModuleUtils
     extend self
 
-    STREET_PREFIX = %w( Rua Avenida Travessa Alameda ).freeze
+    STREET_PREFIX = %w[Rua Avenida Travessa Alameda].freeze
 
     def zip_code
       FFaker.numerify '#####-###'
@@ -32,10 +32,14 @@ module FFaker
     end
 
     def street
-      case rand(1)
+      case rand(0..1)
       when 0 then "#{street_prefix} #{NameBR.name}"
       when 1 then "#{street_prefix} #{NameBR.first_name} #{NameBR.last_name} #{NameBR.last_name}"
       end
+    end
+
+    def full_address
+      "#{street}, #{building_number}, #{city}, #{state}, Brazil"
     end
   end
 end

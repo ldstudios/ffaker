@@ -1,5 +1,6 @@
 require 'ffaker/utils/array_utils'
 require 'ffaker/utils/random_utils'
+require 'ffaker/utils/unique_utils'
 
 module FFaker
   module ModuleUtils
@@ -15,7 +16,7 @@ module FFaker
       else
         mod_name = ancestors.first.to_s.split('::').last
         data_path = "#{FFaker::BASE_LIB_PATH}/ffaker/data/#{underscore(mod_name)}/#{underscore(const_name.to_s)}"
-        data = k File.read(data_path).split("\n")
+        data = k File.read(data_path, mode: 'r:UTF-8').split("\n")
         const_set const_name, data
         data
       end
@@ -27,6 +28,10 @@ module FFaker
             .gsub(/([a-z\d])([A-Z])/, '\1_\2')
             .tr('-', '_')
             .downcase
+    end
+
+    def unique(max_retries = 10_000)
+      @unique_generator ||= FFaker::UniqueUtils.new(self, max_retries)
     end
   end
 end

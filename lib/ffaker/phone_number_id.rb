@@ -6,7 +6,7 @@ module FFaker
     extend ModuleUtils
     extend self
 
-    COUNTRY_CODE = '+62'
+    COUNTRY_CODE = '+62'.freeze
 
     def mobile_phone_number
       "#{fetch_sample(MOBILE_PHONE_PREFIXES)}-#{FFaker.numerify('########')}"
@@ -19,7 +19,7 @@ module FFaker
     end
 
     def phone_number
-      case rand(2)
+      case rand(0..1)
       when 0 then home_phone_number
       when 1 then mobile_phone_number
       end

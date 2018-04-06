@@ -23,7 +23,7 @@ module FFaker
     extend ModuleUtils
     extend self
 
-    GENDERS = %w(female male).freeze
+    GENDERS = %w[female male].freeze
 
     def ssn(opts = {})
       from   = opts[:from]   || ::Time.local(1940, 1, 1)
@@ -66,15 +66,15 @@ module FFaker
     end
 
     def get_random_region_even
-      rand(499) * 2
+      rand(0..498) * 2
     end
 
     def get_random_region_odd
-      rand(499) * 2 + 1
+      rand(0..498) * 2 + 1
     end
 
     def three_character_string(number)
-      '%03d' % number
+      format('%03d', number)
     end
 
     # http://en.wikipedia.org/wiki/Luhn_algorithm

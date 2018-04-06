@@ -12,19 +12,19 @@ module FFaker
     #  76 =>  Tigo
     #  70 =>  Expresso
     #
-    MobileOperatorsPrefix = %w(70 76 77).freeze
+    MobileOperatorsPrefix = %w[70 76 77].freeze
 
     # Home or Work Operator prefixes
     #
     #  33 =>  Orange
     #
-    HomeWorkOperatorsPrefix = %w(33).freeze
+    HomeWorkOperatorsPrefix = %w[33].freeze
 
     # Return a prefix in MobileOperatorsPrefix
     # @see FFaker::PhoneNumberSN::MobileOperatorsPrefix
     #
     def mobile_phone_prefix
-      MobileOperatorsPrefix[rand(3)]
+      fetch_sample(MobileOperatorsPrefix)
     end
 
     # Return a prefix in HomeWorkOperatorsPrefix
@@ -58,13 +58,13 @@ module FFaker
     # Example 33 906 29 05
     #
     def homework_number
-      "#{homework_phone_prefix}-#{[8, 9][rand(1)]}#{FFaker.numerify('##-##-##')}"
+      "#{homework_phone_prefix}-#{rand(8..9)}#{FFaker.numerify('##-##-##')}"
     end
 
     # Generates a random phone number mobile or home or work
     #
     def phone_number
-      case rand(10)
+      case rand(0..9)
       when 0 then homework_number
       when 9 then homework_number
       when 3 then mobile_number

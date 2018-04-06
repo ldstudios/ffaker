@@ -96,13 +96,13 @@ module FFaker
 
     def body
       body = content_tag_for(:h1, words(2).capitalize)
-      rand(4).times do
+      rand(0..3).times do
         body << content_tag_for(:p, fancy_string)
       end
-      body << table(rand(4))
+      body << table(rand(0..3))
       body << content_tag_for(:h2, words(2).capitalize)
       body << content_tag_for(:ol) do |ol|
-        rand(4).times do
+        rand(0..3).times do
           ol << content_tag_for(:li, paragraph(1))
         end
       end
@@ -111,19 +111,19 @@ module FFaker
       end
       body << content_tag_for(:h3, words(2).capitalize!)
       body << content_tag_for(:ul) do |ul|
-        rand(4).times do
+        rand(0..3).times do
           ul << content_tag_for(:li, paragraph(1))
         end
       end
       body << content_tag_for(:pre) do |pre|
         pre << content_tag_for(:code) do |code|
-            code << "
-              ##{word} h1 a {
-                display: block;
-                width: 300px;
-                height: 80px;
-              }
-            "
+          code << "
+            ##{word} h1 a {
+              display: block;
+              width: 300px;
+              height: 80px;
+            }
+          "
         end
       end
       body

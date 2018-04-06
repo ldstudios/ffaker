@@ -12,27 +12,27 @@ class TestAddressGR < Test::Unit::TestCase
 
   def setup
     @address_gr = FFaker::AddressGR
-    @street_prefix = FFaker::AddressGR::STREET_PREFIX.join("|")
+    @street_prefix = FFaker::AddressGR::STREET_PREFIX.join('|')
   end
 
   def test_city
-    assert_match /\p{Greek}/, @address_gr.city
+    assert_match(/\p{Greek}/, @address_gr.city)
   end
 
   def test_region
-    assert_match /\p{Greek}/, @address_gr.region
+    assert_match(/\p{Greek}/, @address_gr.region)
   end
 
   def test_zip_code
-    assert_match /\A\d{5}\z/, @address_gr.zip_code
+    assert_match(/\A\d{5}\z/, @address_gr.zip_code)
   end
 
   def test_street_name
-    assert_match /\p{Greek}/, @address_gr.street_name
+    assert_match(/\p{Greek}/, @address_gr.street_name)
   end
 
   def test_street_nbr
-    assert_match /\A\d{1,3}\z/, @address_gr.street_nbr
+    assert_match(/\A\d{1,3}\z/, @address_gr.street_nbr)
   end
 
   def test_street_address

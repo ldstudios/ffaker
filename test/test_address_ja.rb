@@ -1,5 +1,6 @@
 # encoding: utf-8
 # frozen_string_literal: true
+
 require 'helper'
 
 class TestAddressJA < Test::Unit::TestCase
@@ -37,7 +38,7 @@ class TestAddressJA < Test::Unit::TestCase
   end
 
   def test_designated_city
-    assert_match(japanese_regex('市'), FFaker::AddressJA.city)
+    assert_match(japanese_regex('[市区]'), FFaker::AddressJA.city)
   end
 
   def test_city
